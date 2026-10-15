@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Customer Workflow — Support Inbox</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>AI Customer Workflow</h1>
+      <p class="subtitle">Support inbox with AI triage and human approval</p>
+    </div>
+    <span id="mode-badge" class="mode-badge">checking engine…</span>
+  </header>
+
+  <div id="demo-banner" class="demo-banner" hidden>
+    Demo mode: drafts are produced by a built-in rule-based engine, not an LLM.
+    Set <code>OPENAI_API_KEY</code> to switch to live model drafts.
+  </div>
+
+  <section class="stats" id="stats">
+    <div class="stat-card"><span class="stat-num" id="stat-total">–</span><span class="stat-label">Total tickets</span></div>
+    <div class="stat-card"><span class="stat-num" id="stat-new">–</span><span class="stat-label">New</span></div>
+    <div class="stat-card"><span class="stat-num" id="stat-pending">–</span><span class="stat-label">Pending approval</span></div>
+    <div class="stat-card"><span class="stat-num" id="stat-resolved">–</span><span class="stat-label">Resolved</span></div>
+    <div class="stat-card"><span class="stat-num" id="stat-attention">–</span><span class="stat-label">Needs attention</span></div>
+    <div class="stat-card"><span class="stat-num" id="stat-approval">–</span><span class="stat-label">Draft approval rate</span></div>
+  </section>
+
+  <main class="layout">
+    <section class="panel inbox">
+      <div class="panel-head">
+        <h2>Inbox</h2>
+        <select id="status-filter">
+          <option value="">All statuses</option>
+          <option>New</option>
+          <option>Pending approval</option>
+          <option>Resolved</option>
+          <option>Needs attention</option>
+        </select>
+      </div>
+      <ul id="ticket-list" class="ticket-list"></ul>
+      <div class="breakdown" id="breakdown"></div>
+      <div class="activity">
+        <h3>Recent activity</h3>
+        <ul id="activity-list"></ul>
+      </div>
+    </section>
+
+    <section class="panel detail" id="detail">
+      <p class="empty">Select a ticket to see its AI analysis and draft.</p>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
